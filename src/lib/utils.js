@@ -72,26 +72,37 @@ export function createMediaStreamFromImage(url) {
   const ctx = canvas.getContext("2d");
   const img = new Image();
   img.crossOrigin = "Anonymous"; // Ensures CORS handling
-  img.src = url;
 
   return new Promise((resolve) => {
+    let animationFrameId;
+
     img.onload = () => {
       canvas.width = img.width;
       canvas.height = img.height;
-
-      // Draw the first frame
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
       // Capture the canvas as a video stream
-      const stream = canvas.captureStream(30); // 30 FPS
+      const stream = canvas.captureStream(30); // Approximate 30 FPS
 
-      // Update canvas with new frames every 100ms
-      setInterval(() => {
-        img.src = `${url}?t=${Date.now()}`; // Force refresh image by adding timestamp
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-      }, 10);
+      function updateFrame() {
+        img.src = `${url}?t=${Date.now()}`; // Force refresh image
+
+        img.onload = () => {
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          animationFrameId = requestAnimationFrame(updateFrame);
+        };
+      }
+
+      updateFrame(); // Start frame updates
+
+      // Attach a cleanup function to properly stop the stream
+      stream._stopUpdating = () => {
+        cancelAnimationFrame(animationFrameId);
+      };
 
       resolve(stream);
     };
+
+    img.src = `${url}?t=${Date.now()}`; // Load the first frame
   });
 }
