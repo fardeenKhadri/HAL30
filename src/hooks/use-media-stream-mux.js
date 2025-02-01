@@ -1,6 +1,6 @@
 export function useMediaStream(type) {
-  if (!["webcam", "screen"].includes(type)) {
-    throw new Error('Invalid type. Expected "webcam" or "screen".');
+  if (!["webcam", "screen", "esp32cam"].includes(type)) {
+    throw new Error('Invalid type. Expected "webcam", "screen", or "esp32cam".');
   }
 
   let stream = null;
@@ -17,16 +17,18 @@ export function useMediaStream(type) {
         video: true,
         audio: false,
       });
+    } else if (type === "esp32cam") {
+      stream = "http://localhost:81/stream"; // ESP32-CAM HTTP Stream URL
     }
     isStreaming = true;
     return stream;
   };
 
   const stop = () => {
-    if (stream) {
+    if (stream instanceof MediaStream) {
       stream.getTracks().forEach((track) => track.stop());
-      stream = null;
     }
+    stream = null;
     isStreaming = false;
   };
 

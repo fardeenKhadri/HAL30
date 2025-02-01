@@ -1,5 +1,7 @@
 import React, { useRef, useState } from "react";
-import { API_KEY } from "../../constants";
+import { API_KEY, uri } from "../../constants";
+import { LiveAPIProvider } from "../../contexts/LiveAPIContext";
+import ControlTray from "../../components/shared/ControlTray";
 
 const Home = () => {
   const videoRef = useRef(null);
@@ -11,7 +13,19 @@ const Home = () => {
       "API key is required to use the StreamingConsole component."
     );
   }
-  return <div>Home</div>;
+  return (
+    <section className="flex flex-1">
+      <LiveAPIProvider url={uri} apiKey={API_KEY}>
+        <video
+          className={"border max-h-fit max-w-[90%] "}
+          ref={videoRef}
+          autoPlay
+          playsInline
+        />
+        <ControlTray videoRef={videoRef} onVideoStreamChange={setVideoStream} />
+      </LiveAPIProvider>
+    </section>
+  );
 };
 
 export default Home;
