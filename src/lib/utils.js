@@ -67,3 +67,31 @@ export function base64ToArrayBuffer(base64) {
   return bytes.buffer;
 }
 
+export function createMediaStreamFromImage(url) {
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+  const img = new Image();
+  img.crossOrigin = "Anonymous"; // Ensures CORS handling
+  img.src = url;
+
+  return new Promise((resolve) => {
+    img.onload = () => {
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      // Draw the first frame
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+      // Capture the canvas as a video stream
+      const stream = canvas.captureStream(30); // 30 FPS
+
+      // Update canvas with new frames every 100ms
+      setInterval(() => {
+        img.src = `${url}?t=${Date.now()}`; // Force refresh image by adding timestamp
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      }, 10);
+
+      resolve(stream);
+    };
+  });
+}

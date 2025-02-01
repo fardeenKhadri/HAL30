@@ -15,6 +15,8 @@ import {
   Presentation,
   Video,
   VideoOff,
+  Wifi,
+  WifiOff,
 } from "lucide-react";
 
 const MediaStreamButton = memo(
@@ -167,11 +169,12 @@ function ControlTray({ videoRef, children, onVideoStreamChange = () => {} }) {
           offIcon={<VideoOff />}
         />
         <MediaStreamButton
-          isStreaming={activeVideoStream === esp32Cam.stream} // Compare with stored stream
+          isStreaming={esp32Cam.isStreaming} // Compare with stored stream
           start={changeStreams(esp32Cam)}
           stop={changeStreams()}
-          onIcon={<Video />}
-          offIcon={<VideoOff />}
+          onIcon={<Wifi />}
+          offIcon={<WifiOff />}
+
         />
 
         {children}

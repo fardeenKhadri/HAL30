@@ -14,15 +14,20 @@ const Home = () => {
     );
   }
   return (
-    <section className="flex flex-1">
+    <section className="flex w-full h-screen p-5">
       <LiveAPIProvider url={uri} apiKey={API_KEY}>
-        <video
-          className={"border max-h-fit max-w-[90%] "}
-          ref={videoRef}
-          autoPlay
-          playsInline
-        />
-        <ControlTray videoRef={videoRef} onVideoStreamChange={setVideoStream} />
+        <div className="flex w-full flex-col items-center gap-5">
+          <video
+            className={"border w-fit "}
+            ref={videoRef}
+            autoPlay
+            playsInline
+          />
+          <ControlTray
+            videoRef={videoRef}
+            onVideoStreamChange={setVideoStream}
+          />
+        </div>
       </LiveAPIProvider>
     </section>
   );
