@@ -1,23 +1,8 @@
-HIRO is an AI-powered image captioning and chatbot that uses:
-✅ Hugging Face's BLIP model for generating image captions.
-✅ Groq's Llama model to answer questions about the image.
-✅ Works on CPU-friendly devices like Raspberry Pi 5.
+# React + Vite
 
-🛠️ Installation
-1️⃣ Install Required Dependencies
-Run the following commands:
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-`pip install torch transformers pillow groq numpy<2 "tokenizers>=0.14,<0.19"`
+Currently, two official plugins are available:
 
-🚀 Usage
-1️⃣ Run the Script
-`python boti.py`
-
-
-The script loads an image, generates a caption, and analyzes it.
-You can ask questions about the image via chatbot.
-📷 How It Works
-1️⃣ Loads the Image: Reads and preprocesses the image using PIL.
-2️⃣ Generates Caption: Uses BLIP from Hugging Face for image-to-text conversion.
-3️⃣ Analyzes with AI: Uses Groq's Llama model to check if the image is safe for blind people.
-4️⃣ Chatbot Mode: Users can ask follow-up questions about the image.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
