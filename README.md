@@ -9,10 +9,15 @@ HIRO is a **cutting-edge AI assistant** designed to **understand images and answ
 ✅ **Smart Image Captioning** – Powered by **Hugging Face's BLIP model**, HIRO generates **detailed and insightful** image descriptions.  
 ✅ **Conversational AI** – Ask HIRO **anything** about an image, and it responds using **Groq's Llama model** for deep contextual understanding.  
 ✅ **Lightweight & Efficient** – Works **seamlessly** even on **CPU-friendly devices like the Raspberry Pi 5**!  
+![WhatsApp Image 2025-02-02 at 11 13 04_d17dc18d](https://github.com/user-attachments/assets/e4810544-a327-4235-bd68-c4d866e036b9)
 
 ## **🌍 Choose Your Model: Online or Offline!**  
 🔹 **Want real-time AI power?** The **Online Model** is available in the **`vizion` branch** of the **HAL30** repository.  
+![WhatsApp Image 2025-02-02 at 11 10 52_382c38e2](https://github.com/user-attachments/assets/b7b7431f-3afd-4936-b5f2-7b837b2418b9)
+
 🔹 **Need offline processing?** The **Offline Model** can be found in the **`veeson` branch** of the **HAL30** repository.  
+![image](https://github.com/user-attachments/assets/7790365e-a12f-4f6f-92b9-5bbfd2e42b73)
+
 
 🚀 **Get started by navigating to the respective branches and experience the future of AI-powered vision!**  
 
