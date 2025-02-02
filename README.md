@@ -3,21 +3,9 @@ HIRO is an AI-powered image captioning and chatbot that uses:
 ✅ Groq's Llama model to answer questions about the image.
 ✅ Works on CPU-friendly devices like Raspberry Pi 5.
 
-🛠️ Installation
-1️⃣ Install Required Dependencies
-Run the following commands:
+There exists 2 models 1 being offline adn another being online 
 
-`pip install torch transformers pillow groq numpy<2 "tokenizers>=0.14,<0.19"`
+1. The Online model is available in the `vizion` branch of the HAL30 repo 
+2. The offline model is available in the `veeson` branch of the HAL30 repo
 
-🚀 Usage
-1️⃣ Run the Script
-`python boti.py`
-
-
-The script loads an image, generates a caption, and analyzes it.
-You can ask questions about the image via chatbot.
-📷 How It Works
-1️⃣ Loads the Image: Reads and preprocesses the image using PIL.
-2️⃣ Generates Caption: Uses BLIP from Hugging Face for image-to-text conversion.
-3️⃣ Analyzes with AI: Uses Groq's Llama model to check if the image is safe for blind people.
-4️⃣ Chatbot Mode: Users can ask follow-up questions about the image.
+Navigate to the respective repos to have the access of the models accordingly 
