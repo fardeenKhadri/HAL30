@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { API_KEY, uri } from "../../constants";
 import { LiveAPIProvider } from "../../contexts/LiveAPIContext";
 import ControlTray from "../../components/shared/ControlTray";
+import { VitalsCheck } from "../../components/shared/Vitals";
 
 function EspForm() {
   const [espIp, setEspIp] = useState("");
@@ -66,11 +67,12 @@ const Home = () => {
       <LiveAPIProvider url={uri} apiKey={API_KEY}>
         <div className="flex w-full flex-col items-center gap-5">
           <video
-            className={"border w-fit "}
+            className={"border w-fit max-h-[70lvh]"}
             ref={videoRef}
             autoPlay
             playsInline
           />
+          {/* <VitalsCheck /> */}
           <div className="absolute bottom-10">
             <ControlTray
               videoRef={videoRef}

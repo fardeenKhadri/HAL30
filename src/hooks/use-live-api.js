@@ -5,7 +5,7 @@ import { audioContext } from "../lib/utils";
 import VolMeterWorket from "../lib/worklets/vol-meter";
 
 export function useLiveAPI({ url, apiKey }) {
-  console.log("Initializing useLiveAPI with URL:", url, "and API Key:", apiKey);
+  // console.log("Initializing useLiveAPI with URL:", url, "and API Key:", apiKey);
 
   const client = useMemo(
     () => new MultimodalLiveClient({ url, apiKey }),
@@ -20,20 +20,20 @@ export function useLiveAPI({ url, apiKey }) {
   const [volume, setVolume] = useState(0);
 
   useEffect(() => {
-    console.log("Setting up audio streamer...");
+    // console.log("Setting up audio streamer...");
     if (!audioStreamerRef.current) {
       audioContext({ id: "audio-out" })
         .then((audioCtx) => {
-          console.log("AudioContext initialized:", audioCtx);
+          // console.log("AudioContext initialized:", audioCtx);
           audioStreamerRef.current = new AudioStreamer(audioCtx);
 
           audioStreamerRef.current
             .addWorklet("vumeter-out", VolMeterWorket, (ev) => {
-              console.log("Volume meter event:", ev.data.volume);
+              // console.log("Volume meter event:", ev.data.volume);
               setVolume(ev.data.volume);
             })
             .then(() => {
-              console.log("Audio worklet added successfully.");
+              // console.log("Audio worklet added successfully.");
             });
         })
         .catch((error) => {
@@ -44,17 +44,17 @@ export function useLiveAPI({ url, apiKey }) {
 
   useEffect(() => {
     const onClose = () => {
-      console.log("WebSocket closed.");
+      // console.log("WebSocket closed.");
       setConnected(false);
     };
 
     const stopAudioStreamer = () => {
-      console.log("Stopping audio streamer.");
+      // console.log("Stopping audio streamer.");
       audioStreamerRef.current?.stop();
     };
 
     const onAudio = (data) => {
-      console.log("Audio data received in onAudio:", data);
+      // console.log("Audio data received in onAudio:", data);
       if (audioStreamerRef.current) {
         audioStreamerRef.current.addPCM16(new Uint8Array(data));
       } else {
@@ -62,14 +62,14 @@ export function useLiveAPI({ url, apiKey }) {
       }
     };
 
-    console.log("Setting up client event listeners...");
+    // console.log("Setting up client event listeners...");
     client
       .on("close", onClose)
       .on("interrupted", stopAudioStreamer)
       .on("audio", onAudio);
 
     return () => {
-      console.log("Cleaning up client event listeners...");
+      // console.log("Cleaning up client event listeners...");
       client
         .off("close", onClose)
         .off("interrupted", stopAudioStreamer)
@@ -78,7 +78,7 @@ export function useLiveAPI({ url, apiKey }) {
   }, [client]);
 
   const connect = useCallback(async () => {
-    console.log("Connecting to server with config:", config);
+    // console.log("Connecting to server with config:", config);
     if (!config) {
       console.error("Config is not set.");
       throw new Error("Config has not been set.");
@@ -86,7 +86,7 @@ export function useLiveAPI({ url, apiKey }) {
     client.disconnect();
     try {
       await client.connect(config);
-      console.log("Connected to server.");
+      // console.log("Connected to server.");
       setConnected(true);
     } catch (error) {
       console.error("Error connecting to server:", error);
@@ -94,7 +94,7 @@ export function useLiveAPI({ url, apiKey }) {
   }, [client, config]);
 
   const disconnect = useCallback(() => {
-    console.log("Disconnecting from server...");
+    // console.log("Disconnecting from server...");
     client.disconnect();
     setConnected(false);
   }, [client]);

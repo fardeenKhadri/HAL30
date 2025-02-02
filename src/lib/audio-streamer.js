@@ -5,7 +5,7 @@ import {
 
 export class AudioStreamer {
   constructor(context) {
-    console.log("Initializing AudioStreamer with context:", context);
+    // console.log("Initializing AudioStreamer with context:", context);
     this.context = context;
     this.audioQueue = [];
     this.isPlaying = false;
@@ -27,7 +27,7 @@ export class AudioStreamer {
   }
 
   async addWorklet(workletName, workletSrc, handler) {
-    console.log("Adding worklet:", workletName);
+    // console.log("Adding worklet:", workletName);
     let workletsRecord = registeredWorklets.get(this.context);
     if (workletsRecord && workletsRecord[workletName]) {
       workletsRecord[workletName].handlers.push(handler);
@@ -51,7 +51,7 @@ export class AudioStreamer {
   }
 
   addPCM16(chunk) {
-    console.log("Adding PCM16 chunk. Chunk size:", chunk.length);
+    // console.log("Adding PCM16 chunk. Chunk size:", chunk.length);
     const float32Array = new Float32Array(chunk.length / 2);
     const dataView = new DataView(chunk.buffer);
 
@@ -60,11 +60,11 @@ export class AudioStreamer {
         const int16 = dataView.getInt16(i * 2, true);
         float32Array[i] = int16 / 32768;
       } catch (e) {
-        console.error("Error converting PCM16 to Float32:", e);
+        // console.error("Error converting PCM16 to Float32:", e);
       }
     }
 
-    console.log("Converted chunk to Float32. Length:", float32Array.length);
+    // console.log("Converted chunk to Float32. Length:", float32Array.length);
 
     const newBuffer = new Float32Array(
       this.processingBuffer.length + float32Array.length
@@ -97,7 +97,7 @@ export class AudioStreamer {
   }
 
   scheduleNextBuffer() {
-    console.log("Scheduling next buffer...");
+    // console.log("Scheduling next buffer...");
     const SCHEDULE_AHEAD_TIME = 0.2;
 
     while (
@@ -177,7 +177,7 @@ export class AudioStreamer {
   }
 
   stop() {
-    console.log("Stopping audio streamer...");
+    // console.log("Stopping audio streamer...");
     this.isPlaying = false;
     this.isStreamComplete = true;
     this.audioQueue = [];
@@ -202,7 +202,7 @@ export class AudioStreamer {
   }
 
   async resume() {
-    console.log("Resuming audio streamer...");
+    // console.log("Resuming audio streamer...");
     if (this.context.state === "suspended") {
       await this.context.resume();
     }
@@ -212,7 +212,7 @@ export class AudioStreamer {
   }
 
   complete() {
-    console.log("Resuming audio streamer...");
+    // console.log("Resuming audio streamer...");
     this.isStreamComplete = true;
     if (this.processingBuffer.length > 0) {
       this.audioQueue.push(this.processingBuffer);

@@ -43,10 +43,10 @@ export class MultimodalLiveClient extends EventEmitter {
 
     ws.addEventListener("message", async (evt) => {
       if (evt.data instanceof Blob) {
-        console.log("Received blob from server:", evt.data);
+        // console.log("Received blob from server:", evt.data);
         this.receive(evt.data);
       } else {
-        console.log("Received non-blob message:", evt);
+        // console.log("Received non-blob message:", evt);
       }
     });
 
@@ -77,7 +77,7 @@ export class MultimodalLiveClient extends EventEmitter {
 
         ws.removeEventListener("error", onError);
         ws.addEventListener("close", (ev) => {
-          console.log(ev);
+          // console.log(ev);
           this.disconnect(ws);
           let reason = ev.reason || "";
           if (reason.toLowerCase().includes("error")) {
@@ -111,10 +111,10 @@ export class MultimodalLiveClient extends EventEmitter {
 
   async receive(blob) {
     const response = await blobToJSON(blob);
-    console.log("Server response:", response);
+    // console.log("Server response:", response);
 
     if (isToolCallMessage(response)) {
-      console.log("ToolCallMessage received:", response);
+      // console.log("ToolCallMessage received:", response);
       this.log("server.toolCall", response);
       this.emit("toolcall", response.toolCall);
       return;
@@ -125,13 +125,13 @@ export class MultimodalLiveClient extends EventEmitter {
       return;
     }
     if (isSetupCompleteMessage(response)) {
-      console.log("ServerContentMessage received:", response);
+      // console.log("ServerContentMessage received:", response);
       this.log("server.send", "setupComplete");
       this.emit("setupcomplete");
       return;
     }
     if (isServerContenteMessage(response)) {
-      console.log("Detailed serverContent:", response.serverContent);
+      // console.log("Detailed serverContent:", response.serverContent);
       const { serverContent } = response;
       if (isInterrupted(serverContent)) {
         this.log("receive.serverContent", "interrupted");
@@ -170,7 +170,7 @@ export class MultimodalLiveClient extends EventEmitter {
         this.log("server.content", response);
       }
     } else {
-      console.log("Received unmatched message", response);
+      // console.log("Received unmatched message", response);
     }
   }
 
