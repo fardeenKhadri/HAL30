@@ -127,7 +127,7 @@ function ControlTray({ videoRef, children, onVideoStreamChange = () => {} }) {
   };
 
   return (
-    <div className="flex h-fit gap-5 p-5 border rounded-full">
+    <div className="flex h-fit gap-5 p-5 border rounded-full bg-white">
       <canvas style={{ display: "none" }} ref={renderCanvasRef} />
       <div
         className={clsx(

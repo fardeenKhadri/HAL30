@@ -63,6 +63,7 @@ const Home = () => {
   }
   return (
     <section className="relative flex flex-col gap-5 items-center w-full h-[99lvh] p-5">
+      <h1 className="text-5xl font-extrabold ">HIRO</h1>
       <EspForm />
       <LiveAPIProvider url={uri} apiKey={API_KEY}>
         <div className="flex w-full flex-col items-center gap-5">
@@ -72,7 +73,7 @@ const Home = () => {
             autoPlay
             playsInline
           />
-          {/* <VitalsCheck /> */}
+          <VitalsCheck />
           <div className="absolute bottom-10">
             <ControlTray
               videoRef={videoRef}
