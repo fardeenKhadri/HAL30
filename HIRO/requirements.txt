@@ -1,0 +1,6 @@
+opencv-python
+pillow
+speechrecognition
+pyttsx3
+moondream
+groq
