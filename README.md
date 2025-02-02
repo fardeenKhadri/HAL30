@@ -11,6 +11,9 @@ HIRO is a **cutting-edge AI assistant** designed to **understand images and answ
 ✅ **Lightweight & Efficient** – Works **seamlessly** even on **CPU-friendly devices like the Raspberry Pi 5**!  
 ![WhatsApp Image 2025-02-02 at 11 13 04_d17dc18d](https://github.com/user-attachments/assets/e4810544-a327-4235-bd68-c4d866e036b9)
 
+![WhatsApp Image 2025-02-02 at 11 13 03_d5c5b52a](https://github.com/user-attachments/assets/395a1cc9-5963-46ff-9a01-d4422adc21db)
+
+
 ## **🌍 Choose Your Model: Online or Offline!**  
 🔹 **Want real-time AI power?** The **Online Model** is available in the **`vizion` branch** of the **HAL30** repository.  
 ![WhatsApp Image 2025-02-02 at 11 10 52_382c38e2](https://github.com/user-attachments/assets/b7b7431f-3afd-4936-b5f2-7b837b2418b9)
